@@ -4,14 +4,12 @@ namespace MasterMind
 {
     internal class MasterMindGame
     {
+        internal string badEntryReason;
         internal int DigitRange { get; private set; }
         internal int TriesAllowed { get; private set; }
         internal bool IsRunning { get; private set; }
-
         internal string CorrectNumbers { get; private set; }
-
         internal string[] AllAttempts { get; private set; }
-
         public int TriesAttempted { get; private set; }
         public bool GoodEntry { get; internal set; }
 
@@ -35,7 +33,7 @@ namespace MasterMind
 
         internal void SolveAttempt(string fourDigits)
         {
-            if (GoodAttempt())
+            if (GoodAttempt(fourDigits))
             {
                 this.AllAttempts[this.TriesAttempted - 1] = fourDigits;
                 this.TriesAttempted--;
@@ -90,16 +88,20 @@ namespace MasterMind
 
         }
 
-        private bool GoodAttempt()
+        private bool GoodAttempt(string fourDigits)
         {
             bool attempt = true;
             try
             {
-
+                if (fourDigits.Length != 4)
+                {
+                    attempt = false;
+                    badEntryReason = "Did not enter four digits";
+                }
             }
             catch
-            {
-
+            { 
+                attempt = false;
             }
             return attempt;
         }

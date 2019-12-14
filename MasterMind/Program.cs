@@ -25,11 +25,11 @@ namespace MasterMind
                 {
                     if (masterMind.GoodEntry)
                     {
-
+                        cw("Selection Results: " + masterMind.LastAttemptResults());
                     }
                     else
                     {
-                        cw("Selection Results: " + masterMind.LastAttemptResults());
+                        cw("Invalid entry: " + masterMind.badEntryReason);
                     }
                     
                 }
