@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace MasterMind
 {
@@ -27,10 +28,10 @@ namespace MasterMind
         private void SetCorrectNumbers()
         {
             Random getNumber = new Random();
-            string firstNumber = getNumber.Next(1, 6).ToString();
-            string secondNumber = getNumber.Next(1, 6).ToString();
-            string thirdNumber = getNumber.Next(1, 6).ToString();
-            string fourthNumber = getNumber.Next(1, 6).ToString();
+            string firstNumber = getNumber.Next(1, this.DigitRange).ToString();
+            string secondNumber = getNumber.Next(1, this.DigitRange).ToString();
+            string thirdNumber = getNumber.Next(1, this.DigitRange).ToString();
+            string fourthNumber = getNumber.Next(1, this.DigitRange).ToString();
             this.CorrectNumbers = firstNumber + secondNumber + thirdNumber + fourthNumber;
 
         }
@@ -51,8 +52,17 @@ namespace MasterMind
             
         }
 
+        internal void Restart()
+        {
+            this.IsRunning = false;
+        }
+
         internal string LastAttemptResults()
         {
+            if(TriesRemaining > 9)
+            {
+                return "";
+            }
             string lastAttempt = "";
             int correctLocationPresent = 0;
             int incorrectLocationPresent = 0;
@@ -124,12 +134,31 @@ namespace MasterMind
                     attempt = false;
                     badEntryReason = "Did not enter four digits";
                 }
+                if (NotNumbers(fourDigits))
+                {
+                    attempt = false;
+                    badEntryReason = "Incorrect input, please enter numbers 1-6";
+                }
+
             }
             catch
             { 
                 attempt = false;
             }
             return attempt;
+        }
+
+        private bool NotNumbers(string fourDigits)
+        {
+            bool isNumbers = false;
+            foreach(char c in fourDigits)
+            {
+                if (c < '1' || c > '6')
+                {
+                    isNumbers = true;
+                }
+            }
+            return isNumbers;
         }
     }
 }

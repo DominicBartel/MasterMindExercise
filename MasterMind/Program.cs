@@ -17,28 +17,48 @@ namespace MasterMind
             while (masterMind.IsRunning)
             {
                 Console.Clear();
-                if(masterMind.TriesRemaining == masterMind.TriesAllowed && masterMind.GoodEntry && masterMind.TriesRemaining)
+                if (masterMind.TriesRemaining > 0)
                 {
-                    cw("Welcome to MasterMind. You have " + masterMind.TriesAllowed + " Attempts.");
-                }
-                else
-                {
-                    if (masterMind.GoodEntry)
+                    if (masterMind.LastAttemptResults() == "++++")
                     {
-                        cw("Selection Results: " + masterMind.LastAttemptResults());
-                        cw("Attempts Remaining: " + masterMind.TriesRemaining +" of " + masterMind.TriesAllowed);
+                        cw("You have Won! MasterMind will now exit.");
+                        Console.ReadKey();
+                        masterMind.Restart();
+                        break;
+                    }
+                    else if (masterMind.TriesRemaining == masterMind.TriesAllowed && masterMind.GoodEntry)
+                    {
+                        cw("Welcome to MasterMind. You have " + masterMind.TriesAllowed + " Attempts.");
                     }
                     else
                     {
-                        cw("Invalid entry: " + masterMind.badEntryReason);
+                        if (masterMind.GoodEntry)
+                        {
+                            cw("Selection Results: " + masterMind.LastAttemptResults());
+                            cw("Attempts Remaining: " + masterMind.TriesRemaining + " of " + masterMind.TriesAllowed);
+                        }
+                        else
+                        {
+                            cw("Invalid entry: " + masterMind.badEntryReason);
+                        }
+
                     }
+                    cw("Please enter four digits ranging 1-6");
+                    masterMind.SolveAttempt(Console.ReadLine());
+
+                }
+                else
+                {
+                    
+                    
+                        cw("You have lost! MasterMind will now exit.");
+                        Console.ReadKey();
+                        masterMind.Restart();
+                    
                     
                 }
-
-                cw("Please enter four digits ranging 1-6");
-
                 
-                masterMind.SolveAttempt(Console.ReadLine());
+                
             }
             
         }
