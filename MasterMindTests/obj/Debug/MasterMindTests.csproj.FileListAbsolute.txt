@@ -1,0 +1,17 @@
+C:\Users\Dominic\Documents\Software\MasterMind\MasterMind\MasterMindTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Dominic\Documents\Software\MasterMind\MasterMind\MasterMindTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Dominic\Documents\Software\MasterMind\MasterMind\MasterMindTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Dominic\Documents\Software\MasterMind\MasterMind\MasterMindTests\bin\Debug\MasterMindTests.dll
+C:\Users\Dominic\Documents\Software\MasterMind\MasterMind\MasterMindTests\bin\Debug\MasterMindTests.pdb
+C:\Users\Dominic\Documents\Software\MasterMind\MasterMind\MasterMindTests\bin\Debug\MasterMind.exe
+C:\Users\Dominic\Documents\Software\MasterMind\MasterMind\MasterMindTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\Dominic\Documents\Software\MasterMind\MasterMind\MasterMindTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\Dominic\Documents\Software\MasterMind\MasterMind\MasterMindTests\bin\Debug\MasterMind.pdb
+C:\Users\Dominic\Documents\Software\MasterMind\MasterMind\MasterMindTests\bin\Debug\MasterMind.exe.config
+C:\Users\Dominic\Documents\Software\MasterMind\MasterMind\MasterMindTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\Dominic\Documents\Software\MasterMind\MasterMind\MasterMindTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\Dominic\Documents\Software\MasterMind\MasterMind\MasterMindTests\obj\Debug\MasterMindTests.csprojAssemblyReference.cache
+C:\Users\Dominic\Documents\Software\MasterMind\MasterMind\MasterMindTests\obj\Debug\MasterMindTests.csproj.CoreCompileInputs.cache
+C:\Users\Dominic\Documents\Software\MasterMind\MasterMind\MasterMindTests\obj\Debug\MasterMindTests.csproj.CopyComplete
+C:\Users\Dominic\Documents\Software\MasterMind\MasterMind\MasterMindTests\obj\Debug\MasterMindTests.dll
+C:\Users\Dominic\Documents\Software\MasterMind\MasterMind\MasterMindTests\obj\Debug\MasterMindTests.pdb

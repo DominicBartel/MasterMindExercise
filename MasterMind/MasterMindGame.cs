@@ -3,14 +3,14 @@ using System.Text.RegularExpressions;
 
 namespace MasterMind
 {
-    internal class MasterMindGame
+    public class MasterMindGame
     {
-        internal string badEntryReason;
-        internal int DigitRange { get; private set; }
-        internal int TriesAllowed { get; private set; }
-        internal bool IsRunning { get; private set; }
-        internal string CorrectNumbers { get; private set; }
-        internal string[] AllAttempts { get; private set; }
+        public string badEntryReason;
+        public int DigitRange { get; private set; }
+        public int TriesAllowed { get; private set; }
+        public bool IsRunning { get; private set; }
+        public string CorrectNumbers { get; private set; }
+        public string[] AllAttempts { get; private set; }
         public int TriesRemaining { get; private set; }
         public bool GoodEntry { get; internal set; }
 
@@ -36,7 +36,7 @@ namespace MasterMind
 
         }
 
-        internal void SolveAttempt(string fourDigits)
+        public void SolveAttempt(string fourDigits)
         {
             if (GoodAttempt(fourDigits))
             {
@@ -57,7 +57,7 @@ namespace MasterMind
             this.IsRunning = false;
         }
 
-        internal string LastAttemptResults()
+        public string LastAttemptResults()
         {
             if(TriesRemaining > 9)
             {
@@ -153,7 +153,7 @@ namespace MasterMind
             bool isNumbers = false;
             foreach(char c in fourDigits)
             {
-                if (c < '1' || c > '6')
+                if (c < '1' || c > this.DigitRange.ToString()[0])
                 {
                     isNumbers = true;
                 }
