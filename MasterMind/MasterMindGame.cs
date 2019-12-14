@@ -10,14 +10,14 @@ namespace MasterMind
         internal bool IsRunning { get; private set; }
         internal string CorrectNumbers { get; private set; }
         internal string[] AllAttempts { get; private set; }
-        public int TriesAttempted { get; private set; }
+        public int TriesRemaining { get; private set; }
         public bool GoodEntry { get; internal set; }
 
         public MasterMindGame(int digitRange, int triesAllowed)
         {
             this.DigitRange = digitRange;
             this.TriesAllowed = triesAllowed;
-            this.TriesAttempted = triesAllowed;
+            this.TriesRemaining = triesAllowed;
             this.IsRunning = true;
             this.AllAttempts = new string[this.TriesAllowed];
             this.GoodEntry = true;
@@ -27,7 +27,11 @@ namespace MasterMind
         private void SetCorrectNumbers()
         {
             Random getNumber = new Random();
-            this.CorrectNumbers = getNumber.Next(0, 999999).ToString("D6");
+            string firstNumber = getNumber.Next(1, 6).ToString();
+            string secondNumber = getNumber.Next(1, 6).ToString();
+            string thirdNumber = getNumber.Next(1, 6).ToString();
+            string fourthNumber = getNumber.Next(1, 6).ToString();
+            this.CorrectNumbers = firstNumber + secondNumber + thirdNumber + fourthNumber;
 
         }
 
@@ -35,8 +39,8 @@ namespace MasterMind
         {
             if (GoodAttempt(fourDigits))
             {
-                this.AllAttempts[this.TriesAttempted - 1] = fourDigits;
-                this.TriesAttempted--;
+                this.AllAttempts[this.TriesRemaining - 1] = fourDigits;
+                this.TriesRemaining--;
                 this.GoodEntry = true;
             }
             else
@@ -52,23 +56,45 @@ namespace MasterMind
             string lastAttempt = "";
             int correctLocationPresent = 0;
             int incorrectLocationPresent = 0;
-            string currentAttempt = AllAttempts[TriesAttempted];
+            string currentAttempt = AllAttempts[TriesRemaining];
+            bool[] checkedNumbers = { false, false, false, false };
 
             if (this.GoodEntry)
             {
                 for (int i = 0; i < currentAttempt.Length; i++)
                 {
-                    if (currentAttempt[i] == CorrectNumbers[i])
+                    if (currentAttempt[i] == CorrectNumbers[i] && !checkedNumbers[i])
                     {
                         correctLocationPresent++;
+                        checkedNumbers[i] = true;
                     }
                     else
                     {
-                        string removedNumberAttempt = currentAttempt.Replace(currentAttempt[i], '\0');
                         string currentCheckedNumber = CorrectNumbers[i].ToString();
-                        if (removedNumberAttempt.Contains(currentCheckedNumber))
+                        
+                        
+                        if (this.CorrectNumbers.Contains(currentCheckedNumber))
                         {
-                            incorrectLocationPresent++;
+                            for(int h = 0; h < currentAttempt.Length; h++)
+                            {
+                                if(h != i && currentAttempt[i] == this.CorrectNumbers[h] && !checkedNumbers[h])
+                                {
+                                    if (currentAttempt[h] == CorrectNumbers[h])
+                                    {
+                                        correctLocationPresent++;
+                                        checkedNumbers[h] = true;
+                                    }
+                                    else
+                                    {
+                                        incorrectLocationPresent++;
+                                        checkedNumbers[h] = true;
+                                        h = currentAttempt.Length;
+                                    }
+                                    
+                                }
+                                
+                            }
+                            
                         }
                     }
                 }

@@ -17,15 +17,16 @@ namespace MasterMind
             while (masterMind.IsRunning)
             {
                 Console.Clear();
-                if(masterMind.TriesAttempted == masterMind.TriesAllowed)
+                if(masterMind.TriesRemaining == masterMind.TriesAllowed && masterMind.GoodEntry && masterMind.TriesRemaining)
                 {
-                    cw("Welcome to MasterMind. You have" + masterMind.TriesAllowed+ "Attempts.");
+                    cw("Welcome to MasterMind. You have " + masterMind.TriesAllowed + " Attempts.");
                 }
                 else
                 {
                     if (masterMind.GoodEntry)
                     {
                         cw("Selection Results: " + masterMind.LastAttemptResults());
+                        cw("Attempts Remaining: " + masterMind.TriesRemaining +" of " + masterMind.TriesAllowed);
                     }
                     else
                     {
