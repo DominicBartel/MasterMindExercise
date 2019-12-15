@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace MasterMind.Tests
 {
-    [TestClass()]
-    public class MasterMindGameTests
+    [TestClass]
+    public class SolveAttemptTests
     {
         [TestMethod()]
         public void SolveAttemptGoodEntry()
@@ -33,6 +33,11 @@ namespace MasterMind.Tests
             masterMindTest.SolveAttempt("ASDF");
             Assert.IsTrue(masterMindTest.GoodEntry == false);
         }
+        
+    }
+    [TestClass]
+    public class LastAttemptTests
+    {
         [TestMethod()]
         public void LastAttemptCanWin()
         {
@@ -40,5 +45,27 @@ namespace MasterMind.Tests
             masterMindTest.SolveAttempt(masterMindTest.CorrectNumbers);
             Assert.IsTrue(masterMindTest.LastAttemptResults() == "++++");
         }
+        [TestMethod()]
+        [ExpectedException(typeof(System.IndexOutOfRangeException))]
+        public void LastAttemptFailsLongInput()
+        {
+            MasterMindGame masterMindTest = new MasterMindGame(6, 2);
+            masterMindTest.SolveAttempt("11111");
+        }
+        [TestMethod()]
+        [ExpectedException(typeof(System.IndexOutOfRangeException))]
+        public void LastAttemptFailsIncorrectRange()
+        {
+            MasterMindGame masterMindTest = new MasterMindGame(6, 2);
+            masterMindTest.SolveAttempt("7777");
+        }
+        [TestMethod()]
+        [ExpectedException(typeof(System.IndexOutOfRangeException))]
+        public void LastAttemptFailsNotNumbers()
+        {
+            MasterMindGame masterMindTest = new MasterMindGame(6, 2);
+            masterMindTest.SolveAttempt("ASDF");
+        }
     }
+
 }

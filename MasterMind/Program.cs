@@ -19,7 +19,7 @@ namespace MasterMind
                 Console.Clear();
                 if (masterMind.TriesRemaining > 0)
                 {
-                    if (masterMind.LastAttemptResults() == "++++")
+                    if (masterMind.TriesRemaining < masterMind.TriesAllowed - 1 && masterMind.LastAttemptResults() == "++++")
                     {
                         cw("You have Won! MasterMind will now exit.");
                         Console.ReadKey();

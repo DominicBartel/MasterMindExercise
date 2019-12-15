@@ -59,66 +59,74 @@ namespace MasterMind
 
         public string LastAttemptResults()
         {
-            if(TriesRemaining > 9)
-            {
-                return "";
-            }
+            
             string lastAttempt = "";
             int correctLocationPresent = 0;
             int incorrectLocationPresent = 0;
-            string currentAttempt = AllAttempts[TriesRemaining];
             bool[] checkedNumbers = { false, false, false, false };
 
-            if (this.GoodEntry)
+            try
             {
-                for (int i = 0; i < currentAttempt.Length; i++)
+                string currentAttempt = AllAttempts[TriesRemaining];
+
+                if (this.GoodEntry)
                 {
-                    if (currentAttempt[i] == CorrectNumbers[i] && !checkedNumbers[i])
+                    for (int i = 0; i < currentAttempt.Length; i++)
                     {
-                        correctLocationPresent++;
-                        checkedNumbers[i] = true;
-                    }
-                    else
-                    {
-                        string currentCheckedNumber = CorrectNumbers[i].ToString();
-                        
-                        
-                        if (this.CorrectNumbers.Contains(currentCheckedNumber))
+                        if (currentAttempt[i] == CorrectNumbers[i] && !checkedNumbers[i])
                         {
-                            for(int h = 0; h < currentAttempt.Length; h++)
+                            correctLocationPresent++;
+                            checkedNumbers[i] = true;
+                        }
+                        else
+                        {
+                            string currentCheckedNumber = CorrectNumbers[i].ToString();
+
+
+                            if (this.CorrectNumbers.Contains(currentCheckedNumber))
                             {
-                                if(h != i && currentAttempt[i] == this.CorrectNumbers[h] && !checkedNumbers[h])
+                                for (int h = 0; h < currentAttempt.Length; h++)
                                 {
-                                    if (currentAttempt[h] == CorrectNumbers[h])
+                                    if (h != i && currentAttempt[i] == this.CorrectNumbers[h] && !checkedNumbers[h])
                                     {
-                                        correctLocationPresent++;
-                                        checkedNumbers[h] = true;
+                                        if (currentAttempt[h] == CorrectNumbers[h])
+                                        {
+                                            correctLocationPresent++;
+                                            checkedNumbers[h] = true;
+                                        }
+                                        else
+                                        {
+                                            incorrectLocationPresent++;
+                                            checkedNumbers[h] = true;
+                                            h = currentAttempt.Length;
+                                        }
+
                                     }
-                                    else
-                                    {
-                                        incorrectLocationPresent++;
-                                        checkedNumbers[h] = true;
-                                        h = currentAttempt.Length;
-                                    }
-                                    
+
                                 }
-                                
+
                             }
-                            
                         }
                     }
-                }
 
-                for (int i = 0; i < correctLocationPresent; i++)
-                {
-                    lastAttempt += "+";
-                }
+                    for (int i = 0; i < correctLocationPresent; i++)
+                    {
+                        lastAttempt += "+";
+                    }
 
-                for (int i = 0; i < incorrectLocationPresent; i++)
-                {
-                    lastAttempt += "-";
+                    for (int i = 0; i < incorrectLocationPresent; i++)
+                    {
+                        lastAttempt += "-";
+                    }
                 }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine("error:" + e);
+            }
+            
+
+            
             
             return lastAttempt;
 
@@ -141,9 +149,10 @@ namespace MasterMind
                 }
 
             }
-            catch
+            catch (Exception e)
             { 
                 attempt = false;
+                Console.WriteLine("error:" + e);
             }
             return attempt;
         }
