@@ -39,7 +39,7 @@ namespace MasterMind
                         }
                         else
                         {
-                            cw("Invalid entry: " + masterMind.badEntryReason);
+                            cw("Invalid entry: " + masterMind.BadEntryReason);
                         }
 
                     }

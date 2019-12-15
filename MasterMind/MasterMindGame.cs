@@ -5,7 +5,7 @@ namespace MasterMind
 {
     public class MasterMindGame
     {
-        public string badEntryReason;
+        public string BadEntryReason;
         public int DigitRange { get; private set; }
         public int TriesAllowed { get; private set; }
         public bool IsRunning { get; private set; }
@@ -51,11 +51,17 @@ namespace MasterMind
             
             
         }
+        public void SetCorrectNumbers(string numbersToSet)
+        {
+            this.CorrectNumbers = numbersToSet;
+        }
 
         internal void Restart()
         {
             this.IsRunning = false;
         }
+
+        
 
         public string LastAttemptResults()
         {
@@ -132,7 +138,7 @@ namespace MasterMind
 
         }
 
-        private bool GoodAttempt(string fourDigits)
+        public bool GoodAttempt(string fourDigits)
         {
             bool attempt = true;
             try
@@ -140,12 +146,12 @@ namespace MasterMind
                 if (fourDigits.Length != 4)
                 {
                     attempt = false;
-                    badEntryReason = "Did not enter four digits";
+                    BadEntryReason = "Did not enter four digits";
                 }
                 if (NotNumbers(fourDigits))
                 {
                     attempt = false;
-                    badEntryReason = "Incorrect input, please enter numbers 1-6";
+                    BadEntryReason = "Incorrect input, please enter numbers 1-6";
                 }
 
             }
